@@ -10,25 +10,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Product {
+public class Order {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column( unique =  true,nullable = false,length = 7)
-    private int id;
-    @Column( name = "Product_Name",nullable = false,length = 70)
-    private String name;
+    private int id; 
+    @Column( name = "Order_Name",nullable = false,length = 90)
+    private String customerName;
     @Column( nullable = false)
-    private String category;
-    @Column( length = 40)
-    private String Description;
+    private String productName;
     @Column( nullable = false)
-    private String Price;
+    private String quantity;
     @Column( nullable = false)
-    private int rating;
+    private double price;
 
 }

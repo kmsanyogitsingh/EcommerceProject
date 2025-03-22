@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ecommerce1.Entity.Customer;
+import com.example.ecommerce1.entity.Customer;
+import com.example.ecommerce1.entity.Product;
 import com.example.ecommerce1.service.CustomerService;
+import com.example.ecommerce1.service.ProductService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +19,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 @RestController
 @RequestMapping("/auth/customer")
 public class CustomerControlller {
     @Autowired
     CustomerService cs;
+    @Autowired
+    ProductService ps;
 
     @GetMapping("/getcustomer")
     public List<Customer> getAllData() {
@@ -63,4 +68,30 @@ public class CustomerControlller {
     public Customer modifyCustomer(@PathVariable int id, @RequestBody Customer update) {
         return cs.modifyCustomer(update, id);
     }
+
+    @GetMapping("/getpartialdata/{id}")
+    public List<Object[]> getPartialData(@PathVariable int id) {
+        return cs.getDataPartialById(id);
+    }
+     
+
+    @GetMapping("/getproduct")
+    public List<Product> getAllProduct() {
+        return ps.getAllProduct();
+    }
+
+
+    @GetMapping("/getproductbyname/{name}")
+    public List<Product> getProductByName(@PathVariable String name) {
+
+        return cs.getProductByName(name);
+    }
+
+    @GetMapping("/getproductbycategory/{category}")
+    public List<Product> getProductByCategory(@PathVariable String category) {
+        return cs.getProductByCategory(category);
+    }
 }
+
+
+

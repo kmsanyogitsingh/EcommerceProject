@@ -1,3 +1,4 @@
+
 package com.example.ecommerce1.entity;
 
 import jakarta.persistence.Column;
@@ -10,29 +11,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Customer {
+public class Vendor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column( unique =  true,nullable = false,length = 7)
+    @Column(unique = true, nullable = false, length = 7)
     private int id;
-    @Column(name = "cust_name",nullable = false,length = 80)
+    @Column(name = "Vender_Name" ,nullable = false, length = 50)
     private String name;
-    @Column( unique =  true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
-    @Column( unique =  true,nullable = false,length = 10)
+    @Column(unique = true, nullable = false, length = 10)
     private String contact;
-    @Column( nullable = false)
-    private int age;
-    @Column( nullable = false)
-    private String gender;
-    @Column( nullable = false,length = 10)
-    private String password;
-    @Column( nullable = false,length = 90)
+    @Column(unique = true, nullable = false, length = 100)
     private String address;
+    @Column(nullable = false, length = 10)
+    private String password;
 
 }

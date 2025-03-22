@@ -10,6 +10,4 @@ public class Ecommerce1Application {
 		SpringApplication.run(Ecommerce1Application.class, args);
 		System.out.println("Start my Ecommerce project..");
 	}
-
-
 }
