@@ -1,11 +1,6 @@
 package com.example.ecommerce1.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,25 +9,32 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "CustomerDetails")
 public class Customer {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column( unique =  true,nullable = false,length = 7)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "cust_name",nullable = false,length = 80)
+
+    @Column(name = "cust_name", nullable = false, length = 80)
     private String name;
-    @Column( unique =  true,nullable = false)
+
+    @Column(unique = true, nullable = false)
     private String email;
-    @Column( unique =  true,nullable = false,length = 10)
+
+    @Column(unique = true, nullable = false, length = 10)
     private String contact;
-    @Column( nullable = false)
+
+    @Column(nullable = false)
     private int age;
-    @Column( nullable = false)
+
+    @Column(nullable = false, length = 10)
     private String gender;
-    @Column( nullable = false,length = 10)
+
+    @Column(nullable = false, length = 100)
     private String password;
-    @Column( nullable = false,length = 90)
+
+    @Column(nullable = false, length = 150)
     private String address;
 
 }

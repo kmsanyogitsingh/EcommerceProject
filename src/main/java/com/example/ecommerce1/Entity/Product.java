@@ -1,11 +1,5 @@
 package com.example.ecommerce1.entity;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,21 +8,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "ProductDetails")
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( unique =  true,nullable = false,length = 7)
-    private int id;
-    @Column( name = "Product_Name",nullable = false,length = 70)
-    private String name;
-    @Column( nullable = false)
-    private String category;
-    @Column( length = 40)
-    private String Description;
-    @Column( nullable = false)
-    private String Price;
-    @Column( nullable = false)
-    private int rating;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @Column(name = "product_name", nullable = false, length = 70)
+    private String name;
+
+    @Column(length = 255)
+    private String Description;
+    @Column(nullable = false, length = 50)
+    private String Category;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private String Price;
+
+    @Column(nullable = false)
+    private int rating;
+    private String paymentData;
 }

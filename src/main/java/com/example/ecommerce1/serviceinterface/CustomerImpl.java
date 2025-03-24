@@ -14,9 +14,9 @@ public interface CustomerImpl {
 
     public List<Customer> getAllData();
 
-    public Customer addCustomer(@RequestBody Customer customer);
-
     public Optional<Customer> getCustomerById(@PathVariable int id);
+
+    public Customer addCustomer(@RequestBody Customer customer);
 
     public void deleteAllCustomer();
 

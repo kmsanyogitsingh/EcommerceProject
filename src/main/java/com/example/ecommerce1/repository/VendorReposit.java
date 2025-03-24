@@ -11,8 +11,11 @@ import com.example.ecommerce1.entity.Vendor;
 
 @Repository
 public interface VendorReposit extends JpaRepository<Vendor, Integer> {
-    @Query(value = "SELECT name, email, contact, address FROM vendor WHERE id = :id", nativeQuery = true)
+    // @Query(value = "SELECT name, email, contact, address FROM Vendor WHERE id = :id", nativeQuery = true)
+    // public List<Object[]> getPartialData(@Param("id") int id);
+    @Query("select v.name, v.email, v.contact,v.address from Vendor v where v.id = :id")
     public List<Object[]> getPartialData(@Param("id") int id);
+    
     
 
 }

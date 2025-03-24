@@ -78,7 +78,6 @@ public class AdminController {
         return cs.getDataPartialById(id);
     }
 
-
     @GetMapping("/getproduct")
     public List<Product> getAllProduct() {
         return ps.getAllProduct();

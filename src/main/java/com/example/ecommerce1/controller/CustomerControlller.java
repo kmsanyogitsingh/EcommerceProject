@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/auth/customer")
 public class CustomerControlller {
@@ -53,33 +52,31 @@ public class CustomerControlller {
 
     }
 
+    @DeleteMapping("/deleteAllCustomer")
+    public String deleteAll() {
+        cs.deleteAllCustomer();
+        return " Customer Details is deleted";
+    }
+
     @DeleteMapping("deletecustomer/{id}")
     public String deleteByCustomerId(@PathVariable int id) {
         return cs.deleteCustomerById(id);
     }
 
-    @DeleteMapping("AlldeleteCustomer")
-    public String deleteAll() {
-        cs.deleteCustomer();
-        return " Customer Details is deleted";
-    }
-
-    @PutMapping("modifycustomer/{id}")
-    public Customer modifyCustomer(@PathVariable int id, @RequestBody Customer update) {
-        return cs.modifyCustomer(update, id);
+    @PutMapping("/modifycustomer/{id}")
+    public Customer modifyCustomer(@PathVariable int id, @RequestBody Customer updatedata) {
+        return cs.modifyCustomer(updatedata, id);
     }
 
     @GetMapping("/getpartialdata/{id}")
     public List<Object[]> getPartialData(@PathVariable int id) {
         return cs.getDataPartialById(id);
     }
-     
 
     @GetMapping("/getproduct")
     public List<Product> getAllProduct() {
         return ps.getAllProduct();
     }
-
 
     @GetMapping("/getproductbyname/{name}")
     public List<Product> getProductByName(@PathVariable String name) {
@@ -92,6 +89,3 @@ public class CustomerControlller {
         return cs.getProductByCategory(category);
     }
 }
-
-
-

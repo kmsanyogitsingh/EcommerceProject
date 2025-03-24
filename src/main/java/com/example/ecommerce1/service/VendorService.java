@@ -16,10 +16,10 @@ import com.example.ecommerce1.serviceinterface.VendorImpl;
 
 @Service
 public class VendorService implements VendorImpl {
-@Autowired
+    @Autowired
     VendorReposit vr;
 
-    @Autowired 
+    @Autowired
     ProductReposit pr;
 
     @Override
@@ -30,7 +30,7 @@ public class VendorService implements VendorImpl {
     @Override
     public Optional<Vendor> getVendorById(int id) {
         return vr.findById(id);
-        
+
     }
 
     @Override
@@ -42,46 +42,43 @@ public class VendorService implements VendorImpl {
     public Vendor modifyVendor(Vendor vendor, int id) {
         Optional<Vendor> exist = vr.findById(id);
 
-        if(exist.isPresent()) {
+        if (exist.isPresent()) {
             Vendor con = exist.get();
 
-            con.setName(vendor.getName() != null ?  vendor.getName(): con.getName());
-            con.setEmail(vendor.getEmail()!= null ?  vendor.getEmail(): con.getEmail());
-            con.setAddress(vendor.getAddress()!= null ?  vendor.getAddress(): con.getAddress());
-            con.setContact(vendor.getContact()!= null ?  vendor.getContact(): con.getContact());
-            con.setPassword(vendor.getPassword()!= null ?  vendor.getPassword(): con.getPassword());
+            con.setName(vendor.getName() != null ? vendor.getName() : con.getName());
+            con.setEmail(vendor.getEmail() != null ? vendor.getEmail() : con.getEmail());
+            con.setAddress(vendor.getAddress() != null ? vendor.getAddress() : con.getAddress());
+            con.setContact(vendor.getContact() != null ? vendor.getContact() : con.getContact());
+            con.setPassword(vendor.getPassword() != null ? vendor.getPassword() : con.getPassword());
 
             return vr.save(con);
-        }
-        else {
+        } else {
             throw new RuntimeException("Id does not exists");
         }
     }
 
     @Override
     public void deleteAllVendor() {
-       vr.deleteAll();
+        vr.deleteAll();
     }
 
     @Override
     public String deleteVendorById(int id) {
-        if(vr.existsById(id)) {
+        if (vr.existsById(id)) {
             vr.deleteById(id);
             return "Your data is deleted";
-        }
-        else {
+        } else {
             return "ID not found";
         }
     }
-
 
     @Override
     public Map<String, Object> getDataPartialById(int id) {
 
         List<Object[]> log = vr.getPartialData(id);
 
-        if(log.isEmpty()) {
-            throw new RuntimeException("Id not found"+id);
+        if (log.isEmpty()) {
+            throw new RuntimeException("Id not found" + id);
         }
 
         else {
@@ -94,11 +91,9 @@ public class VendorService implements VendorImpl {
 
             return mp;
         }
-        
+
     }
 
-    
-    
     @Override
     public Product addProduct(Product product) {
         return pr.save(product);
@@ -111,13 +106,12 @@ public class VendorService implements VendorImpl {
 
     @Override
     public String deleteProduct(int id) {
-        if(pr.existsById(id)) {
+        if (pr.existsById(id)) {
             pr.deleteById(id);
             return "Your Product is deleted";
-        }
-        else {
+        } else {
             return "Not deleted yet";
         }
     }
-    
+
 }

@@ -11,7 +11,11 @@ import com.example.ecommerce1.entity.Customer;
 
 @Repository
 public interface CustomerReposit extends JpaRepository<Customer, Integer> {
-    @Query(value = "SELECT name, email, contact, gender, address, age FROM customer WHERE id = :id", nativeQuery = true)
+
+    // @Query(value = "select name, email, contact, gender, address, age from Customer c WHERE id = :id", nativeQuery = true)
+    // public List<Object[]> getPartialData(@Param("id") int id);
+    @Query("select c.name, c.email, c.contact, c.gender, c.address, c.age from Customer c where c.id = :id")
     public List<Object[]> getPartialData(@Param("id") int id);
+    
     
 }

@@ -22,15 +22,10 @@ public class ProductService implements ProductImpl {
     public List<Product> getAllProduct() {
         return pr.findAll();
     }
-    // @Override
-    // public Product addProduct(Product product) {
-
-    // return pr.save(product);
-    // }
 
     @Override
     public List<Product> getProductByName(Product product) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'getProductByName'");
     }
 
@@ -41,13 +36,13 @@ public class ProductService implements ProductImpl {
 
     @Override
     public List<Product> getProductByNameAndCategory(Product data) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'getProductByNameAndCategory'");
     }
 
     @Override
     public Product getProductById(int id) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'getProductById'");
     }
 

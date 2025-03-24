@@ -1,12 +1,8 @@
 package com.example.ecommerce1.entity;
+import java.math.BigDecimal;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import java.util.UUID;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,35 +11,43 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
-
+@Table(name = "PaymentDetails")
 public class Payment {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
-    @Column(unique = true, nullable = false, length = 8)
-    private String id;
+    private String id;  
+
     @Column(nullable = false)
     private String productName;
-    @Column(unique = true, nullable = false)
-    private String product_id;
-    @Column(unique = true, nullable = false, length = 8)
-    private String transactionId;
-    @Column(unique = true, nullable = false)
-    private String vendor_id;
+
     @Column(nullable = false)
-    private double amount;
+    private String productId;
+
+    @Column(unique = true, nullable = false)
+    private String transactionId;
+
+    @Column(nullable = false)
+    private String vendorId;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal amount;
+
     @Column(nullable = false)
     private String date;
+
     @Column(nullable = false)
     private String time;
-    @Column(nullable = false)
-    private String payment_mode;
-    @Column(nullable = false)
-    private String status;
-    
-    @PrePersist
-    public  void getId(String id){
-        this.id="Pay"+id;
-    }
 
+    @Column(nullable = false, length = 20)
+    private String paymentMode;
+
+    @Column(nullable = false, length = 20)
+    private String status;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.id == null) {  // Avoid overwriting existing IDs
+            this.id = "PAY" + UUID.randomUUID().toString().replace("-", "").substring(0, 6);
+    }
+}
 }
